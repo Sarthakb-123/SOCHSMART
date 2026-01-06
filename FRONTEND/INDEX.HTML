@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SochSmart - Thinking, Applied.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a5568;
+            --accent: #06b6d4;
+            --accent-hover: #0891b2;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 500;
+        }
+
+        h3 {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+        }
+
+        p {
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: clamp(3rem, 8vw, 6rem) 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section:nth-child(2) { animation-delay: 0.1s; }
+        section:nth-child(3) { animation-delay: 0.2s; }
+        section:nth-child(4) { animation-delay: 0.3s; }
+        section:nth-child(5) { animation-delay: 0.4s; }
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .logo {
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .logo img {
+            width: 120px;
+            height: 120px;
+            display: inline-block;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .hero h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-description {
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .how-we-work {
+            background: var(--bg-secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .step h3 {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .step p {
+            font-size: 1rem;
+        }
+
+        .who-its-for {
+            background: var(--bg-primary);
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .audience-card {
+            padding: 2rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .audience-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.1);
+        }
+
+        .audience-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .contact {
+            background: var(--bg-secondary);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 3rem auto 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: var(--bg-primary);
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-button:hover:not(:disabled) {
+            background: var(--accent-hover);
+        }
+
+        .form-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+            display: none;
+        }
+
+        .form-message.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .form-message.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.6s linear infinite;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 80vh;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            .steps, .audience-grid {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="logo">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cg fill='none' stroke='%2306b6d4' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='60' y1='100' x2='100' y2='100'/%3E%3Cline x1='200' y1='100' x2='240' y2='100'/%3E%3Ccircle cx='80' cy='100' r='15'/%3E%3Ccircle cx='220' cy='100' r='15'/%3E%3Cline x1='110' y1='120' x2='80' y2='100'/%3E%3Cline x1='190' y1='120' x2='220' y2='100'/%3E%3Crect x='120' y='110' width='60' height='30' rx='5'/%3E%3Cline x1='120' y1='125' x2='180' y2='125'/%3E%3Crect x='130' y='145' width='40' height='35' rx='3'/%3E%3Ccircle cx='145' cy='160' r='4' fill='%2306b6d4'/%3E%3Ccircle cx='155' cy='160' r='4' fill='%2306b6d4'/%3E%3Cline x1='140' y1='172' x2='160' y2='172'/%3E%3Crect x='135' y='185' width='30' height='25' rx='2'/%3E%3Cline x1='145' y1='185' x2='145' y2='210'/%3E%3Cline x1='155' y1='185' x2='155' y2='210'/%3E%3Cline x1='135' y1='190' x2='120' y2='200'/%3E%3Cline x1='165' y1='190' x2='180' y2='200'/%3E%3Ccircle cx='120' cy='200' r='3' fill='%2306b6d4'/%3E%3Ccircle cx='180' cy='200' r='3' fill='%2306b6d4'/%3E%3Cline x1='142' y1='210' x2='138' y2='225'/%3E%3Cline x1='148' y1='210' x2='152' y2='225'/%3E%3Cline x1='152' y1='210' x2='148' y2='225'/%3E%3Cline x1='158' y1='210' x2='162' y2='225'/%3E%3C/g%3E%3C/svg%3E" alt="SochSmart Logo">
+                </div>
+                <h1>Thinking, Applied.</h1>
+                <p class="hero-subtitle">Building clarity through logic and systems thinking</p>
+                <p class="hero-description">
+                    SochSmart cultivates structured thinking and problem-solving skills through logic-based learning frameworks. We help individuals and teams develop systematic approaches to complex challenges.
+                </p>
+                <a href="#contact" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-we-work">
+        <div class="container">
+            <div class="section-header">
+                <h2>How We Work</h2>
+                <p>A clear, systematic approach to developing critical thinking capabilities</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Assess</h3>
+                    <p>We identify your current thinking patterns and the specific challenges you face in reasoning and decision-making.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Structure</h3>
+                    <p>We introduce logical frameworks and systems thinking tools tailored to your goals and context.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Apply</h3>
+                    <p>You practice on real problems with guided feedback, building lasting analytical capabilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="who-its-for">
+        <div class="container">
+            <div class="section-header">
+                <h2>Who It's For</h2>
+                <p>For anyone looking to think more clearly and solve problems more effectively</p>
+            </div>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <h3>Students & Learners</h3>
+                    <p>Develop foundational critical thinking skills that enhance academic performance and prepare you for complex problem-solving in any field.</p>
+                </div>
+                <div class="audience-card">
+                    <h3>Professionals</h3>
+                    <p>Sharpen analytical capabilities for strategic decision-making, process improvement, and navigating organizational complexity.</p>
+                </div>
+                <div class="audience-card">
+                    <h3>Teams & Organizations</h3>
+                    <p>Build a shared framework for logical reasoning, improving communication, alignment, and collective problem-solving capacity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get Started</h2>
+                <p>Ready to develop structured thinking skills? Reach out to begin your journey.</p>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="role">I am a...</label>
+                    <select id="role" name="role" required>
+                        <option value="">Select your role</option>
+                        <option value="student">Student / Learner</option>
+                        <option value="professional">Professional</option>
+                        <option value="team">Team / Organization</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <button type="submit" class="form-button" id="submitBtn">
+                    <span id="btnText">Submit</span>
+                </button>
+                <div class="form-message" id="formMessage"></div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 SochSmart. Thinking, Applied.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Configuration
+        const API_BASE_URL = 'http://localhost:3000';
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Form submission
+        const form = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                role: document.getElementById('role').value
+            };
+
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            btnText.innerHTML = 'Submitting<span class="loading"></span>';
+            formMessage.style.display = 'none';
+
+            try {
+                // Send to backend
+                const response = await fetch(`${API_BASE_URL}/signup`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Success
+                    formMessage.className = 'form-message success';
+                    formMessage.textContent = data.message || 'Thank you for your interest! We\'ll be in touch soon.';
+                    form.reset();
+                } else {
+                    // Error from backend
+                    formMessage.className = 'form-message error';
+                    formMessage.textContent = data.error || 'Something went wrong. Please try again.';
+                }
+            } catch (error) {
+                // Network error
+                console.error('Submission error:', error);
+                formMessage.className = 'form-message error';
+                formMessage.textContent = 'Unable to connect to server. Please make sure the backend is running and try again.';
+            } finally {
+                // Re-enable button
+                submitBtn.disabled = false;
+                btnText.textContent = 'Submit';
+                formMessage.style.display = 'block';
+
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    formMessage.style.display = 'none';
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>
